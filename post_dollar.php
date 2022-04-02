@@ -4,7 +4,7 @@ include("db_info.php");
 
 $dollar = $_POST["dollar"];
 
-$query = $mysqli->prepare("INSERT INTO courses (dollar) VALUES (?)");
+$query = $mysqli->prepare("INSERT INTO dollarrates (dollar) VALUES (?)");
 $query->bind_param("s", $dollar);
 $query->execute();
 

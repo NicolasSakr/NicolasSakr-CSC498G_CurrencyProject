@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    
+
 
     private TextView res;
     EditText amountInLBP;
