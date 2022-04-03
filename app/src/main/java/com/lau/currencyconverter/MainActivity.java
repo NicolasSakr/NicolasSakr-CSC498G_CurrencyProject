@@ -129,19 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
             //KHOURY: add the values to the databse using POST API
             String url1 = "http://localhost/Project%20Mobile/post_lbp.php?id=1"+strLBP;
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            try {
-                urlConnection.setDoOutput(true);
-                urlConnection.setChunkedStreamingMode(0);
 
-                OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-                writeStream(out);
-
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                readStream(in);
-            } finally {
-                urlConnection.disconnect();
-            }
             //To send the values we got to the other page in order to list them
             intent.putExtra("lbp",strLBP);
             String toStrUsd = ""+lbp2usd;
