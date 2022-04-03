@@ -4,7 +4,7 @@ include("db_info.php");
 
 $id = $_GET["id"]; 
 
-$query = $mysqli->prepare("SELECT lbp FROM dollarrates WHERE id = ?");
+$query = $mysqli->prepare("SELECT dollar FROM dollarrates WHERE id = ?");
 $query->bind_param("i", $id);
 $query->execute();
 
