@@ -42,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         }else if(strUSD!=null && strLBP.isEmpty()){
-
+            //If the user inputs the amount in USD, the api will fetch the rate, and calculate the amount in lbp
+            //assigning the rate from lirarate API
+            double rate = 78;
+            //converting the amount given in USD to LBP
             double usd2lbp= Double.parseDouble(strUSD)*rate;
 
 
