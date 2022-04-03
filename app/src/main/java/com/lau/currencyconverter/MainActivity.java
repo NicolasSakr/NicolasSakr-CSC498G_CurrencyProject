@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public void convert(View view){
         String strLBP= amountInLBP.getText().toString();
         String strUSD= amountInUSD.getText().toString();
+        //intent to go to page 2 on click
+        Intent intent = new Intent(getApplicationContext(), pg2.class);
 
         if(strLBP!=null && strUSD.isEmpty()){
 
@@ -44,7 +46,15 @@ public class MainActivity extends AppCompatActivity {
             //KHOURY: add the values to the databse using POST API
 
 
+            //To send the values we got to the other page in order to list them
+            intent.putExtra("lbp",strLBP);
+            String toStrUsd = ""+lbp2usd;
+            intent.putExtra("usd",toStrUsd);
+            String strRate = ""+rate;
+            intent.putExtra("rate",strRate);
 
+            //To launch the intent if the condition is met
+            startActivity(intent);
 
         }else if(strUSD!=null && strLBP.isEmpty()){
             //If the user inputs the amount in USD, the api will fetch the rate, and calculate the amount in lbp
@@ -57,6 +67,17 @@ public class MainActivity extends AppCompatActivity {
             //KHOURY: add the values to the databse using POST API
 
 
+
+            //To send the values we got to the other page in order to list them
+            intent.putExtra("usd",strUSD);
+            String toStrLbp = ""+usd2lbp;
+            intent.putExtra("usd",toStrLbp);
+            String strRate = ""+rate;
+            intent.putExtra("rate",strRate);
+            
+            //To launch the intent if the condition is met
+            startActivity(intent);
+
         }else if(strUSD!=null && strLBP!=null){
             //if the user enters a value in both USD adn LBP, it will show an error and he will try again
             res.setText("ERROR, Try filling one input ONLY.");
@@ -66,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             res.setText("ERROR, Fill one input.");
             Toast.makeText(getApplicationContext(), "Error, Fill one Input!", Toast.LENGTH_LONG).show();
         }
+        //intent will only launch if the first two if statements are accepted, else it will show an error and stay on the page
     }
 
 }
