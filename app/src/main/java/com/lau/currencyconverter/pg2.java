@@ -18,10 +18,12 @@ public class pg2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pg2);
 
+        //initializing the text views to list the output
         lb = (TextView) findViewById(R.id.amountLBP);
         us = (TextView) findViewById(R.id.amountUSD);
         rt = (TextView) findViewById(R.id.Rate);
 
+        //taking the output from the first page and saving it in the text views
         Intent x = getIntent();
         String lbp = x.getStringExtra("lbp");
         lb.setText(lbp + " LBP");

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             double rate = 78;
             //converting the amount given in USD to LBP
             double usd2lbp= Double.parseDouble(strUSD)*rate;
-            //Send value to the databse
+            //Send values to the databse
 
             //KHOURY: add the values to the databse using POST API
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("usd",toStrLbp);
             String strRate = ""+rate;
             intent.putExtra("rate",strRate);
-            
+
             //To launch the intent if the condition is met
             startActivity(intent);
 
