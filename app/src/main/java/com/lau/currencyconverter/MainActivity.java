@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             double rate = 78;
             //converting the amount given in LBP to USD
             double lbp2usd= Double.parseDouble(strLBP)/rate;
+            //Send value to the databse
 
             //KHOURY: add the values to the databse using POST API
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             double rate = 78;
             //converting the amount given in USD to LBP
             double usd2lbp= Double.parseDouble(strUSD)*rate;
+            //Send value to the databse
 
             //KHOURY: add the values to the databse using POST API
 

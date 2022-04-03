@@ -14,6 +14,6 @@ public class pg2 extends AppCompatActivity {
     }
 
     public void back(View v){
-
+        //onclick go back to the main page to input new values
     }
 }
