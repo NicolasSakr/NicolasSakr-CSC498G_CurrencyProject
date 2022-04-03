@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView res;
@@ -31,18 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(strLBP!=null && strUSD.isEmpty()){
 
-            double lbp2usd= Double.parseDouble(strLBP)/22000;
-            String toShow = "The entered amount in LBP is equivalent to "+String.format("%.2f", lbp2usd)+"$";
-            Toast.makeText(getApplicationContext(), toShow, Toast.LENGTH_LONG).show();
-            res.setText(String.format("%.2f", lbp2usd)+"$");
+            double lbp2usd= Double.parseDouble(strLBP)/rate;
+
 
         }else if(strUSD!=null && strLBP.isEmpty()){
 
-            double usd2lbp= Double.parseDouble(strUSD)*22000;
-            String toShow = "The entered amount in S is equivalent to "+String.format("%.2f", usd2lbp)+"LBP";
-            Toast.makeText(getApplicationContext(), toShow, Toast.LENGTH_LONG).show();
+            double usd2lbp= Double.parseDouble(strUSD)*rate;
 
-            res.setText(String.format("%.2f", usd2lbp)+"LBP");
 
         }else if(strUSD!=null && strLBP!=null){
             res.setText("ERROR, Try filling one input ONLY.");
@@ -52,4 +49,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Error, Fill one Input!", Toast.LENGTH_LONG).show();
         }
     }
+
 }
