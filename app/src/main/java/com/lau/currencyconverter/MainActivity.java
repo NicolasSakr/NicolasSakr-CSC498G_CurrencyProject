@@ -2,6 +2,7 @@ package com.lau.currencyconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -36,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
             //If the user inputs the amouunt in LBP, the api will fetch the rate, and calculate the amount in usd
             //assigning the rate from lirarate API
             double rate = 78;
-            //converting the amount give in lbp to USD
+            //converting the amount given in LBP to USD
             double lbp2usd= Double.parseDouble(strLBP)/rate;
 
+            //KHOURY: add the values to the databse using POST API
 
+
+            
 
         }else if(strUSD!=null && strLBP.isEmpty()){
             //If the user inputs the amount in USD, the api will fetch the rate, and calculate the amount in lbp
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             double rate = 78;
             //converting the amount given in USD to LBP
             double usd2lbp= Double.parseDouble(strUSD)*rate;
+
+            //KHOURY: add the values to the databse using POST API
 
 
         }else if(strUSD!=null && strLBP!=null){
