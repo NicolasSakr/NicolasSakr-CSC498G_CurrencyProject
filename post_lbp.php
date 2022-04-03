@@ -4,10 +4,10 @@ include("db_info.php");
 
 
 
-$dollar = $_GET["dollar"];
+$lbp = $_GET["lbp"];
 
-$query = $mysqli->prepare("INSERT INTO dollarrates (dollar) VALUES (? )");
-$query->bind_param("s", $dollar);
+$query = $mysqli->prepare("INSERT INTO dollarrates (lbp) VALUES (? )");
+$query->bind_param("s", $lbp);
 $query->execute();
 
 $response = [];
