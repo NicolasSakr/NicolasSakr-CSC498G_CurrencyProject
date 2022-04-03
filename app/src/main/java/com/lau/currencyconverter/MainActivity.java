@@ -2,6 +2,30 @@ package com.lau.currencyconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +39,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.android.volley.toolbox.HttpResponse;
 
 import org.json.JSONObject;
 
@@ -63,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
             try{
                 JSONObject json = new JSONObject(s);
                 String lbp = json.getString("lbp");
-                String joke = json.getString("value");
                 Log.i("amount_lbp", lbp);
-                Log.i("Joke", joke);
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -104,8 +128,20 @@ public class MainActivity extends AppCompatActivity {
             //Send value to the databse
 
             //KHOURY: add the values to the databse using POST API
+            String url1 = "http://localhost/Project%20Mobile/post_lbp.php?id=1"+strLBP;
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            try {
+                urlConnection.setDoOutput(true);
+                urlConnection.setChunkedStreamingMode(0);
 
+                OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+                writeStream(out);
 
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                readStream(in);
+            } finally {
+                urlConnection.disconnect();
+            }
             //To send the values we got to the other page in order to list them
             intent.putExtra("lbp",strLBP);
             String toStrUsd = ""+lbp2usd;
@@ -125,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             //Send values to the databse
 
             //KHOURY: add the values to the databse using POST API
-
+            String url = "http://localhost/Project%20Mobile/post_usd.php?id=1"+strUSD;
 
 
             //To send the values we got to the other page in order to list them
