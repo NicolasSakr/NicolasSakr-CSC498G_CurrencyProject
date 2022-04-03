@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             //KHOURY: add the values to the databse using POST API
 
 
-            
+
 
         }else if(strUSD!=null && strLBP.isEmpty()){
             //If the user inputs the amount in USD, the api will fetch the rate, and calculate the amount in lbp
@@ -56,9 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         }else if(strUSD!=null && strLBP!=null){
+            //if the user enters a value in both USD adn LBP, it will show an error and he will try again
             res.setText("ERROR, Try filling one input ONLY.");
             Toast.makeText(getApplicationContext(), "Error, Try filling one input ONLY.", Toast.LENGTH_LONG).show();
         }else{
+            //if the user enters a value in both USD adn LBP, it will show an error and he will try again
             res.setText("ERROR, Fill one input.");
             Toast.makeText(getApplicationContext(), "Error, Fill one Input!", Toast.LENGTH_LONG).show();
         }
