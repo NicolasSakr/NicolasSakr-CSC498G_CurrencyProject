@@ -22,7 +22,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/img2"
         android:layout_width="57dp"
         android:layout_height="43dp"
         android:src="@drawable/flagusa"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.186" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/img1"
         android:layout_width="57dp"
         android:layout_height="43dp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"

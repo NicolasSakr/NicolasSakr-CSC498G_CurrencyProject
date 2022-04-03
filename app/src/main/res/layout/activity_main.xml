@@ -48,7 +48,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/img2"
         android:layout_width="57dp"
         android:layout_height="43dp"
         android:layout_marginStart="65dp"
@@ -88,11 +88,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/img1"
         android:layout_width="57dp"
         android:layout_height="43dp"
         android:layout_marginStart="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/img2"
         app:layout_constraintEnd_toStartOf="@+id/amountLBP"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"

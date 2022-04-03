@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class pg2 extends AppCompatActivity {
@@ -17,6 +18,11 @@ public class pg2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pg2);
+        ImageView img1 = (ImageView) findViewById(R.id.img1);
+        ImageView img2 = (ImageView) findViewById(R.id.img2);
+        img1.animate().rotation(360).setDuration(2000);
+        img2.animate().rotation(360).setDuration(2000);
+
 
         //initializing the text views to list the output
         lb = (TextView) findViewById(R.id.amountLBP);
