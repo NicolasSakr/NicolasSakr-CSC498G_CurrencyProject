@@ -33,6 +33,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.w3c.dom.Text;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -51,8 +52,11 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     private TextView res;
+    double rate, buyRate, sellRate;
     EditText amountInLBP;
     EditText amountInUSD;
+    private Object DownloadTask;
+
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... urls){
@@ -91,9 +95,21 @@ public class MainActivity extends AppCompatActivity {
                 String lbp = json.getString("lbp");
                 Log.i("amount_lbp", lbp);
 
+                //The json obj has an array of the latest rates
+                //in order to get the latest rate, we need to take the last element of the json elements array
+                JSONArray buy = json.getJSONArray("Buy");
+                JSONArray sell = json.getJSONArray("Sell");
+                //the rate will be second integer of the last element of the 2d array
+                int buyValue = Integer.parseInt(buy[buy.length()-1][1]);
+                int sellValue = Integer.parseInt(sell[sell.length()-1][1]);
+                //we assign the values to these global variables in order to use them after in the if statements
+                buyRate = buyValue ;
+                sellRate = sellValue;
+
             }catch(Exception e){
                 e.printStackTrace();
             }
+
         }
 
     }
@@ -108,6 +124,12 @@ public class MainActivity extends AppCompatActivity {
         String amount =  ""; //get the amount from the view
         String url = "http://localhost/Project%20Mobile/get_lbp.php?id=1";
 
+        String urlLirarate = "https://lirarate.org/wp-json/lirarate/v2/rates?currency=LBP";
+        DownloadTask task = new DownloadTask();
+        task.execute(url);
+
+
+
 
     }
 
@@ -121,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
         if(strLBP!=null && strUSD.isEmpty()){
 
             //If the user inputs the amouunt in LBP, the api will fetch the rate, and calculate the amount in usd
-            //assigning the rate from lirarate API
-            double rate = 78;
+            //assigning the rate from lirarate API; the BUY rate
+            rate = buyRate;
             //converting the amount given in LBP to USD
             double lbp2usd= Double.parseDouble(strLBP)/rate;
             //Send value to the databse
 
-            //KHOURY: add the values to the databse using POST API
+            //add the values to the databse using POST API
             String url1 = "http://localhost/Project%20Mobile/post_lbp.php?id=1"+strLBP;
 
             //To send the values we got to the other page in order to list them
@@ -142,13 +164,13 @@ public class MainActivity extends AppCompatActivity {
 
         }else if(strUSD!=null && strLBP.isEmpty()){
             //If the user inputs the amount in USD, the api will fetch the rate, and calculate the amount in lbp
-            //assigning the rate from lirarate API
-            double rate = 78;
+            //assigning the rate from lirarate API; the SELL rate
+            rate = sellRate;
             //converting the amount given in USD to LBP
             double usd2lbp= Double.parseDouble(strUSD)*rate;
             //Send values to the databse
 
-            //KHOURY: add the values to the databse using POST API
+            //add the values to the databse using POST API
             String url = "http://localhost/Project%20Mobile/post_usd.php?id=1"+strUSD;
 
 
